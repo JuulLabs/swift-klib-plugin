@@ -129,7 +129,7 @@ open class CompileSwiftTask @Inject constructor(
         "-Xswiftc",
         "-target",
         "-Xswiftc",
-        "${compileTarget.arch()}-apple-${platform(compileTarget, minIos, minMacosx)}.0${compileTarget.simulatorSuffix()}",
+        "${compileTarget.arch()}-apple-${operatingSystem(compileTarget, minIos, minMacosx)}.0${compileTarget.simulatorSuffix()}",
     )
 
     private fun readSdkPath(): String {
@@ -164,7 +164,7 @@ open class CompileSwiftTask @Inject constructor(
             staticLibraries = ${libPath.name}
             libraryPaths = ${libPath.parentFile.absolutePath}
 
-            linkerOpts = -L/usr/lib/swift -${compileTarget.linkerMinIosVersionName()} ${minOs(compileTarget, minIos, minMacosx)}.0 -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/${compileTarget.os()}
+            linkerOpts = -L/usr/lib/swift -${compileTarget.linkerMinOsVersionName()} ${minOs(compileTarget, minIos, minMacosx)}.0 -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/${compileTarget.os()}
         """.trimIndent()
         defFile.create(content)
     }
@@ -185,7 +185,7 @@ private fun File.md5() = BigInteger(1, MessageDigest.getInstance("MD5").digest(r
     .toString(16)
     .padStart(32, '0')
 
-private fun platform(compileTarget: CompileTarget, minIos: Int, minMacosx: Int): String =
+private fun operatingSystem(compileTarget: CompileTarget, minIos: Int, minMacosx: Int): String =
     when (compileTarget) {
         CompileTarget.iosX64, CompileTarget.iosArm64, CompileTarget.iosSimulatorArm64 -> "ios$minIos"
         CompileTarget.watchosX64, CompileTarget.watchosArm64, CompileTarget.watchosSimulatorArm64 -> "watchos$minIos"

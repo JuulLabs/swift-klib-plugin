@@ -43,7 +43,7 @@ internal fun CompileTarget.simulatorSuffix() = when(this) {
     CompileTarget.macosArm64 -> ""
 }
 
-internal fun CompileTarget.linkerMinIosVersionName() = when(this) {
+internal fun CompileTarget.linkerMinOsVersionName() = when(this) {
     CompileTarget.iosX64 -> "ios_simulator_version_min"
     CompileTarget.iosArm64 -> "ios_version_min"
     CompileTarget.iosSimulatorArm64 -> "ios_simulator_version_min"
