@@ -2,14 +2,16 @@ plugins {
     id("java-gradle-plugin")
     id("com.gradle.plugin-publish") version "1.1.0"
     kotlin("jvm") version "1.7.22"
+    `maven-publish`
 }
+
+apply(from = rootProject.file("gradle/publish.gradle.kts"))
 
 dependencies {
     implementation(gradleApi())
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.22")
 }
 
-version = "0.4.0-SNAPSHOT"
 group = "io.github.ttypic"
 
 kotlin {
@@ -17,8 +19,8 @@ kotlin {
 }
 
 gradlePlugin {
-    website.set("https://github.com/ttypic/swift-klib-plugin")
-    vcsUrl.set("https://github.com/ttypic/swift-klib-plugin")
+    website.set("https://github.com/JuulLabs/swift-klib-plugin")
+    vcsUrl.set("https://github.com/JuulLabs/swift-klib-plugin")
 
     plugins {
         create("swiftklib") {
