@@ -139,7 +139,7 @@ open class CompileSwiftTask @Inject constructor(
         "${compileTarget.archPrefix()}-apple-${operatingSystem(compileTarget)}.0${compileTarget.simulatorSuffix()}",
     )
 
-    /** Workaround for bug in toolchain where the sdk path (via `swiftc -sdk` flag) is not propageted to clang. */
+    /** Workaround for bug in toolchain where the sdk path (via `swiftc -sdk` flag) is not propagated to clang. */
     private fun additionalSysrootArgs(): List<String> = listOf(
         "-Xcc",
         "-isysroot",
